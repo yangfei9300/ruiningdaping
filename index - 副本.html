@@ -1,0 +1,2711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		
+		<script type="text/javascript" src="js/rem.js"></script>
+		
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=465504d76be4699f43633aea069cca0c">
+		</script>
+		<!-- 左下角折线图 -->
+		<script src="./js/monitor.js"></script>
+
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style1.css">
+		
+
+
+		<link rel="stylesheet" media="screen" href="css/stylelizi.css">
+		<title>济南市可回收智慧管理平台(历城华山分拣中心)</title>
+
+		<!-- 特效5开始 -->
+		<style type="text/css">
+			body {
+				margin: 0;
+				background: #203260;
+				overflow: hidden;
+			}
+		</style>
+		<!-- 特效5结束 -->
+	</head>
+
+	<body style="visibility: hidden;background-color: aqua;">
+
+		<!-- 六方格开始 -->
+		<!-- <canvas class="canvas1" id="c" ></canvas> -->
+		<!-- 放烟花 -->
+		<!-- <canvas id="canvas">Canvas is not supported by your browser.</canvas> -->
+
+
+		<!-- 粒子特效 -->
+		<!-- <div class="count-particles">
+		  <span class="js-count-particles">--</span> particles
+		</div> -->
+		<!-- <div id="particles-js"></div> -->
+		<!-- 特效4 -->
+		<!-- <canvas height="100%" width="100%" 
+		style="position: fixed; top: 0px; left: 0px; z-index: 1; opacity: 1;"  
+		id="canvas111"></canvas> -->
+
+		<!-- 特效5 -->
+		<div id="m-points" style="position: absolute;"></div>
+
+
+		<div class="container-flex" tabindex="0" hidefocus="true">
+			<div class="box-left">
+				<div class="left-top">
+					<img src="./images/e8e55fe62840262e2bc7f41372d102d.png" class="current-num1" />
+				</div>
+				<div class="left-center">
+					<div class="title-box">
+						<h6>总回收量统计</h6>
+					</div>
+					<div class="chart-box pie-chart" id="prbottom_box1" style="margin-top: 20px;">
+						<!-- style="height: 220px;" -->
+					</div>
+				</div>
+				<div class="left-bottom" class="select">
+					<div class="title-box">
+						<h6>30日品类分布</h6>
+					</div>
+					<div class="chart-box pie-chart">
+						<div style="height: 30px;"></div>
+						<!-- <div id="userContainerAge"></div> -->
+						<div id="layer04_left_chart" class="layer04-panel-chart"></div>
+						<div>
+							<div class="pie-data">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-center">
+				<div class="center-top" style="width:100%;">
+					<div style="width: 50%;">
+						<!-- <div class="toptite"
+						>
+							济南市可回收智慧管理平台((历城华出分拣中心)
+						</div>
+						 -->
+						<marquee style="font-size: 50px;color: white; font-family: 'MyCustomFont';"
+							class="marquee">
+							　济南市可回收智慧管理平台(历城华山分拣中心)
+						</marquee>
+
+					</div>
+				</div>
+
+
+
+
+
+
+				<div class="center-center" style="height:24.4%">
+					<div class="left-top">
+						<div class="current-num colonn center-center"
+						id="myDiv"
+						>
+							<div>今日回收量(kg)</div>
+							<p class="number123" id="num1" data-target="5000">3693</p>
+							<!-- <div style="line-height: 60px;" id="myDiv">打开 ▼  </div> -->
+							<div style="width:80%;height: 50px;position: relative;" class="pore">
+								<div class="sasdaa" id="myDiv_">
+									▼
+								</div>
+								<img src="./images/chengg.png"
+									class="chengimg" />
+							</div>
+
+						</div>
+					</div>
+
+					<div class="left-top">
+						<div class="current-num  colonn center-center"
+						id="myDiv2"
+						>
+							<div>今日加工量(kg)</div>
+							<p class="number123" id="num2" data-target="5000">5978</p>
+							<!-- <div style="line-height: 60px;" id="myDiv2">打开 ▼ </div> -->
+							
+							<div style="width:80%;height: 50px;position: relative;" class="pore">
+								<div class="sasdaa" id="myDiv2_">
+									▼
+								</div>
+								<img src="./images/chengg.png"
+									class="chengimg" />
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!-- 地图隐藏 -->
+				<div class="center-bottom" style="height:64.8% ;z-index: 500;">
+					<div class="chart-box">
+						<div id="container" style="width:100%;height:95%;"></div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<div class="box-right">
+
+
+
+
+
+
+
+				<div class="right-bottom">
+					<div class="title-box">
+						<p id="switchBtn"><span class="active" data-dataType="income">实时收货数据</span>
+					</div>
+					<div class="data-box">
+						<table class="table3" style="width: 4.9rem;">
+							<thead>
+								<tr>
+									<th>客户</th>
+									<th>品类</th>
+									<th>重量</th>
+									<th>金额</th>
+								</tr>
+							</thead>
+							<tbody id="mytable2">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+
+
+				<div class="right-center">
+					<div class="title-box">
+						<p id="switchBtn"><span 
+						class="active" 
+						data-dataType="income">清运量统计(公斤)</span>
+						<div class="allline" style="width: 4rem;">
+							<img src="./images/lahuoche.png" 
+							style="width: 40px;height: 30px;margin-left: 10px;" />
+						</div>
+					</div>
+					<div class="data-box">
+						<table class="table3">
+							<thead>
+								<tr>
+									<th>客户</th>
+									<th>品类</th>
+									<th>次数</th>
+									<th>重量</th>
+									<th>金额</th>
+								</tr>
+							</thead>
+							<tbody id="mytable1">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+
+				<div class="right-top">
+					<div class="title-box">
+						<h6 id="barTitle">库存汇总</h6>
+					</div>
+					<p class="unit">单位：件</p>
+					<div class="chart-box">
+						<!-- <div id="chart3" style="width:100%;height:100%;"></div> -->
+						<div id="buyTime" style="width:100%;height:100%;"></div>
+
+
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+		<div class="container">
+			<div class="pop-up">
+				<span class="close-pop"></span>
+				<h2 class="title">当前到件量</h2>
+				<div class="pop-data-box">
+					<p>123,456,789</p>
+				</div>
+			</div>
+
+			<div class="pop-up">
+				<span class="close-pop"></span>
+				<h2 class="title">派件入库量占比</h2>
+				<div class="chart-box pie-chart">
+					<div id="pie1"></div>
+					<div>
+						<div class="pie-data">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="pop-up">
+				<span class="close-pop"></span>
+				<h2 class="title">广东省寄派件数据 </h2>
+
+				<div class="chart-box pop-chart" style="opacity: 0;">
+					<<div id="gdMap" class="gd-map">
+				</div>
+			</div>
+		</div>
+
+		<div class="pop-up">
+			<span class="close-pop"></span>
+			<div class="filter-con pop-filters" style="display:flex" data-type="4">
+				<div class="select-pop" tabindex="0" hidefocus="true">
+					<ul id="barTypes">
+						<li class="active" data-value="1">派件</li>
+						<li data-value="2">寄件</li>
+					</ul>
+				</div>
+				<div class="select" tabindex="0" hidefocus="true">
+					<div class="select-div">
+						公司
+					</div>
+					<ul class="select-ul company">
+						<li class="active" data-value="">公司</li>
+						<li data-value="1">顺丰</li>
+						<li data-value="2">京东</li>
+						<li data-value="2">EMS</li>
+					</ul>
+				</div>
+				<div class="select" tabindex="0" hidefocus="true">
+					<div class="select-div">
+						快件类型
+					</div>
+					<ul class="select-ul">
+						<li class="active" data-value="">快件类型</li>
+						<li data-value="0">文件</li>
+						<li data-value="1">物品</li>
+					</ul>
+				</div>
+			</div>
+			<div class="cont-div">
+				<div class="chart-box pop-charts">
+					<div id="chart4s" style="width:100%;height:95%;"></div>
+				</div>
+			</div>
+			<div class="cont-div">
+				<h2 class="title" id="barTitles">派件数据</h2>
+				<button class="btn-class" data-state=1 id="tabBtns"><img src="images/chart_icon.png"
+						alt=""><span>图表</span></button>
+				<div class="chart-box pop-chart">
+					<div id="chart3s" style="width:100%;height:90%;"></div>
+				</div>
+				<div class="data-box" style="top:25%;width:8.6rem;display:none;">
+					<table class="table2">
+						<tr>
+							<td>入库件</td>
+							<td colspan="3" class="table-data dph-data1">0</td>
+						</tr>
+						<tr class="bg-color">
+							<td rowspan="2">在库件</td>
+							<td rowspan="2" class="table-data dph-data2">0</td>
+							<td>正常件</td>
+							<td class="table-data dph-data3">0</td>
+						</tr>
+						<tr class="bg-color">
+							<td>滞留件</td>
+							<td class="table-data dph-data5">0</td>
+						</tr>
+						<tr>
+							<td rowspan="2">出库件</td>
+							<td rowspan="2" class="dph-data6">0</td>
+							<td>派送件</td>
+							<td class="table-data dph-data7">0</td>
+						</tr>
+						<tr>
+							<td>自提件</td>
+							<td class="table-data dph-data8">0</td>
+						</tr>
+						<tr class="bg-color">
+							<td>退签件</td>
+							<td colspan="3" class="table-data dph-data9">0</td>
+						</tr>
+						<tr>
+							<td>丢失件</td>
+							<td colspan="3" class="table-data dph-data4">0</td>
+						</tr>
+					</table>
+					<table class="table2" style="display:none;">
+						<tr>
+							<td>入库件</td>
+							<td colspan="3" class="table-data mail-data1">0</td>
+						</tr>
+						<tr class="bg-color">
+							<td rowspan="2">在库件</td>
+							<td rowspan="2" class="table-data mail-data2">0</td>
+							<td>正常件</td>
+							<td class="table-data mail-data7">0</td>
+						</tr>
+						<tr class="bg-color">
+							<td>滞留件</td>
+							<td class="table-data mail-data4">0</td>
+						</tr>
+
+						<tr>
+							<td>出库件</td>
+							<td colspan="3" class="mail-data6">0</td>
+						</tr>
+						<tr class="bg-color">
+							<td>丢失件</td>
+							<td colspan="3" class="mail-data3">0</td>
+						</tr>
+						<tr>
+							<td>撤销件</td>
+							<td colspan="3" class="table-data mail-data5">0</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="cont-div">
+				<h2 class="title" id="titles"></h2>
+				<button class="btn-class" id="dateBtns"><img src="images/data_icon.png" alt="">日期</button>
+				<div class="data-box  pop-time">
+					<div class="time-box" id="timeBoxs">
+						<div class="time-div">
+							<input class="time-input" type="text" value="" id="startTimes">
+							<img src="images/selsct_time.png" alt="">
+						</div>
+						<div class="time-div end">
+							<input class="time-input" type="text" value="" id="endTimes">
+							<img src="images/selsct_time.png" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="pop-data-box" id="totalProfits">
+					<p></p>
+				</div>
+			</div>
+			<div class="pop-data">
+				<div class="city-data">
+					<div class="city-box">
+						<p id="titleQs"><span>全网</span>到珠海</p>
+						<ul class="city-btn" data-city="2">
+							<li class="active">全网</li>
+							<li>ABCDE</li>
+							<li>FGHIJ</li>
+							<li>KLMNO</li>
+							<li>PQRST</li>
+							<li>UVWXYZ</li>
+						</ul>
+						<ul class="city-div" id="citys">
+
+						</ul>
+					</div>
+					<ul class="ranking-box">
+						<li><span></span>
+							<p>城市</p>
+							<p>派件</p>
+						</li>
+						<!--                        <li><span>1</span><p>上海</p><p>1sss25(万件)</p></li>-->
+					</ul>
+
+				</div>
+			</div>
+		</div>
+		<div class="pop-up">
+			<span class="close-pop"></span>
+			<h2 class="title">设置</h2>
+			<div class="set-div">
+				<div class="set-box">
+					<label class="four-f" for="">排班日期</label>
+					<div class="time-div">
+						<input class="time-input" type="text" value="" id="times">
+						<img src="images/selsct_time.png" alt="">
+					</div>
+				</div>
+				<div class="set-box">
+					<label for="">值班人</label>
+					<input type="text" value="">
+					<button class="plus" id="addT"></button>
+					<button class="mineus" id="mineusT" style="display:none;"></button>
+				</div>
+				<div class="set-box">
+					<label for="">负责人</label>
+					<input type="text" value="">
+					<button class="plus" id="addL"></button>
+					<button class="mineus" id="mineusL" style="display:none;"></button>
+					<button class="add-btn" id="addSet"><img src="images/plus.png" alt="">添加</button>
+				</div>
+				<table class="table3">
+					<thead>
+						<tr>
+							<th>值班人</th>
+							<th>排班日期</th>
+							<th>负责人</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+
+				</table>
+				<div class="pages-div" class="mineus">
+					<button class="prev"></button>
+					<p id="page"><span>0</span>/<span>0</span></p>
+					<button class="next"></button>
+					<input type="number">
+					<button class="skip">跳转</button>
+				</div>
+			</div>
+			<div class="tishi">日期已存在!</div>
+			<div class="edit-div" style="display:none;">
+				<h4>编辑</h4>
+				<span class="close-edit"></span>
+				<div class="set-box">
+					<label for="">值班人</label>
+					<input class="input-edit" id="editT" type="text" value="">
+				</div>
+				<div class="set-box">
+					<label for="">负责人</label>
+					<input class="input-edit" id="editL" type="text" value="">
+				</div>
+				<div class="set-box edit-box">
+					<button id="qxEdit">取消</button>
+					<button id="qdEdit">确定</button>
+				</div>
+			</div>
+
+
+
+			<div class="pop-up1  popup1" style="visibility: hidden;z-index:5000">
+				<span class="close-pop2 alert1"></span>
+				<div style="height: 20px;"></div>
+				<table class="table4" style="width: 100%;">
+					<tbody id="tList1">
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jinshu.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">金属(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei1">455</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">塑料(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei2">714</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">玻璃(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei3">743</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/jiadian.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">家电(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei4">841</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">家具(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei4">841</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/feifang.png" style="width: 20px;height: 20px;" />
+								<div style="color: white" id="liulei5">废纺(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">99</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="pop-up1 popup2" style="visibility: hidden;z-index:5000;">
+				<span class="close-pop2 alert2"></span>
+				<div style="height: 20px;"></div>
+
+				<table class="table4" style="width: 100%;">
+					<tbody id="tList1">
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/xianbai.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">线白(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">845</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/chungsg.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">纯白(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">57</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/chunlv.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">纯绿(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">929</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/pebai.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PE(白)(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">12</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/pehua.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PE(花)(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">457</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/ppbai.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PP(白)(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">72</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+
+
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/ppbai.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PP(花)(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">149</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/ppbai.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PVC(白)(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">157</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/huangzhi.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">黄纸(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">754</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/huazhi.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">花纸(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">451</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/baozhi.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">报纸(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">325<div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/shuben.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">书本(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">581</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/feigang.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">废钢(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">125</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/feitie.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">废铁(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">124</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/feitong.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">废铜(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">146</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/feilv.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">废铝(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">254</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli2.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">玻璃(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">135</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">家具(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">152</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/jiadian.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">家电(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white">578</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+			<div class="pop-up1  popup4" style="visibility: hidden;z-index:5000">
+				<span class="close-pop2 alert4"></span>
+				<div style="height: 20px;"></div>
+				<table class="table4" style="width: 100%;">
+
+
+					<tbody id="ttList1">
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jinshu.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">废钢(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei1">541</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">废铁(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei2">124</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">废铜(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei3">1234</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/jiadian.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">废铝(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei4">454</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+					</tbody>
+
+					<tbody id="ttList2">
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jinshu.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">纯白(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei1">454</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">纯蓝(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei2">142</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">纯绿(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei3">214</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/jiadian.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PE白(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei4">457</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PP白(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei3">451</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/jiadian.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PP花(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei4">120</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">PVC(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei3">147</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+					</tbody>
+
+					<tbody id="ttList3">
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jinshu.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">红(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei1">471</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">白(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei2">124</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">蓝(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei3">124</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+					</tbody>
+
+					<tbody id="ttList4">
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jinshu.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">大型(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei1">241</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">小型(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei2">154</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">中型(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei3">420</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="images/boli.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">微型(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei3">441</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+					</tbody>
+
+					<tbody id="ttList5">
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jinshu.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">大型(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei1">124</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">小型(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei2">120</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+					</tbody>
+
+					<tbody id="ttList6">
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jinshu.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">夏装(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei1">147</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">秋装(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei2">457</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+						<tr style="width: 100%;line-height: 20px;" class="roww">
+							<td class="roww center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jinshu.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">冬装(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei1">354</div>
+								<div style="width: 10px;"></div>
+							</td>
+							<td class="roww  center-center" style="font-size: 10px;color: white;width: 50%;">
+								<img src="./images/jianju.png" style="width: 20px;height: 20px;" />
+								<div style="color: white">其它(kg)</div>
+								<div class="allline"></div>
+								<div style="color: white" id="liulei2">121</div>
+								<div style="width: 10px;"></div>
+							</td>
+						</tr>
+					</tbody>
+
+
+
+				</table>
+			</div>
+
+
+
+
+
+			<!-- 	<div class="pop-up1  popup5" style="visibility: hidden">
+				<span class="close-pop2 alert5" ></span>
+				<div style="height: 20px;"></div>
+				<div class="roww" id="myContainer">
+					<img  src="./images/984b1dc2beca36967f491fbcbe59c1c.jpg"
+					style="width: 48%;height: 48%;"
+					/>
+					<div style="width: 2%;"></div>
+					<img  src="./images/984b1dc2beca36967f491fbcbe59c1c.jpg"
+					style="width: 48%;height: 48%;"
+					/>
+				</div>
+			</div> -->
+
+
+
+
+
+
+
+
+		</div>
+
+
+
+
+
+
+
+		<div class="pop-up">
+			<span class="close-pop"></span>
+			<h2 class="title">广东省寄派件数据 </h2>
+			<div class="filter-con pop-filter" style="display:flex" data-type="3">
+				<div class="select" tabindex="0" hidefocus="true">
+					<div class="select-div">
+						派件
+					</div>
+					<ul class="select-ul">
+						<li class="active" data-value="1">派件</li>
+						<li data-value="2">寄件</li>
+					</ul>
+				</div>
+				<div class="select" tabindex="0" hidefocus="true">
+					<div class="select-div">
+						公司
+					</div>
+					<ul class="select-ul company">
+						<li class="active" data-value="">公司</li>
+						<li data-value="1">顺丰</li>
+						<li data-value="2">京东</li>
+						<li data-value="2">EMS</li>
+					</ul>
+				</div>
+				<div class="select" tabindex="0" hidefocus="true">
+					<div class="select-div">
+						快件类型
+					</div>
+					<ul class="select-ul">
+						<li class="active" data-value="">快件类型</li>
+						<li data-value="0">文件</li>
+						<li data-value="1">物品</li>
+					</ul>
+				</div>
+			</div>
+			<div class="chart-box pop-chart">
+				<div id="gdMaps" class="gd-map"></div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+		<!-- 芮宁环保 popup5 alert5-->
+		<div class="pop-up1  popup5" style="visibility: hidden;z-index:5000;">
+			<span class="close-pop2 alert5"></span>
+			<div style="height: 20px;"></div>
+			<div class="huanhang" id="myContainer">
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/layer/layer.min.js"></script>
+	<script type="text/javascript" src="js/layer/laydate/laydate.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<script type="text/javascript" src="js/china.js"></script>
+	<script type="text/javascript" src="js/data/guangdong.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+
+	<!-- 放烟花特效 -->
+	<!-- <script src="js/indexyanhua.js"></script> -->
+
+
+
+
+
+
+
+
+
+
+	<!-- <script src="./particles.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/lib/stats.js"></script>
+	<script>
+	  var count_particles, stats, update;
+	  stats = new Stats;
+	  stats.setMode(0);
+	  stats.domElement.style.position = 'absolute';
+	  stats.domElement.style.left = '0px';
+	  stats.domElement.style.top = '0px';
+	  document.body.appendChild(stats.domElement);
+	  count_particles = document.querySelector('.js-count-particles');
+	  update = function() {
+	    stats.begin();
+	    stats.end();
+	    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+	      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+	    }
+	    requestAnimationFrame(update);
+	  };
+	  requestAnimationFrame(update);
+	</script> -->
+
+
+
+
+
+
+	<script type="text/javascript">
+		$('document').ready(function() {
+			$("body").css('visibility', 'visible');
+			var localData = [$('#teacher').val(), $('#start').val() + '/' + $('#end').val(), $('#leader').val()]
+			localStorage.setItem("data", localData);
+			$('#conBtn').on('click', function() {
+				localData = [$('#teacher').val(), $('#start').val() + '/' + $('#end').val(), $('#leader')
+					.val()
+				]
+				if (typeof(Storage) !== "undefined") {
+					localStorage.setItem("data", localData);
+					var arr = localStorage.getItem("data").split(',');
+					$('#name_a').html(arr[0]);
+					$('#date_a').html(arr[1]);
+					$('#lea_a').html(arr[2]);
+				}
+			})
+			$('#fangda').on('click', function() {
+				if ($(this).siblings('ul').is(":hidden")) {
+					$(this).addClass('active').siblings('ul').show();
+				} else {
+					$(this).removeClass('active').siblings('ul').hide();
+				}
+			})
+
+			$('.modal-btn>li').on('click', function() {
+				var index = $(this).index();
+				if (index <= 2) {
+					$('.container').attr('style', 'visibility: visible').find('.pop-up').eq(index).attr(
+						'style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
+				} else if (index > 2 && index < 5) {
+					$('.container').attr('style', 'visibility: visible').find('.pop-up').eq(3).attr('style',
+						'visibility: visible').siblings().attr('style', 'visibility: hidden');
+					if (index != 3) {
+						$('.pop-data .ranking-box').hide();
+					} else {
+						$('.pop-data .ranking-box').show();
+					}
+					$('.cont-div').eq(index - 3).attr('style', 'visibility: visible').siblings('.cont-div')
+						.attr('style', 'visibility: hidden');
+				} else if (index == 5) {
+					$('.container').attr('style', 'visibility: visible').find('.pop-up').eq(3).attr('style',
+						'visibility: visible').siblings().attr('style', 'visibility: hidden');
+					$('.pop-data .ranking-box').hide();
+					if ($('#switchBtn').find('.active').data('datatype') == "income") {
+						$('#titles').html('收入数据');
+						$('#totalProfits').html('123,456.5元');
+						$('.cont-div').eq(2).attr('style', 'visibility: visible').siblings('.cont-div').attr(
+							'style', 'visibility: hidden');
+					} else if ($('#switchBtn').find('.active').data('datatype') == 'expend') {
+						$('#titles').html('支出数据');
+						$('#totalProfits').html('32,111.4元');
+						$('.cont-div').eq(2).attr('style', 'visibility: visible').siblings('div').attr(
+							'style', 'visibility: hidden');
+					}
+				}
+			})
+
+
+
+			// 渲染高德地图
+			// 初始化地图
+			var map = new AMap.Map('container', {
+				zoom: 13, // 设置缩放级别
+				center: [117.100518, 36.744093] // 设置地图中心点坐标，这里可以替换为你想要定位的位置
+			});
+
+
+			var marker = new AMap.Marker({
+				position: new AMap.LngLat(117.099636, 36.758696), // 定位位置的经纬度
+			});
+			marker.setMap(map);
+			//设置鼠标划过点标记显示的文字提示
+			marker.setTitle("芮宁（山东）再生资源科技有限公司<br>（华山数智化分拣中心）;
+			marker.setLabel({
+				offset: new AMap.Pixel(15, 35),
+				content: "芮宁（山东）再生资源科技有限公司<br>（华山数智化分拣中心）"
+			});
+			marker.on('click', function(e) {
+				$("#myContainer").empty();
+				var images1 = [
+					"./images/ruinig.jpg",
+				];
+				images1.forEach(function(src) {
+					// 创建新的<img>元素并设置其src属性
+					var img = $('<img>').attr('src', src)
+						.attr('width', '48%').attr('height', '48%').attr('margin', '1%');
+					// 将新的<img>元素添加到#myContainer中
+					$("#myContainer").append(img);
+				});
+
+				$('.popup5').css({
+					'visibility': 'visible',
+				});
+
+			});
+
+			var marker1 = new AMap.Marker({
+				position: new AMap.LngLat(117.099217, 36.725781), // 定位位置的经纬度
+			});
+			marker1.setMap(map);
+			//设置鼠标划过点标记显示的文字提示
+			marker1.setTitle("华山一号服务终中转站");
+			marker1.setLabel({
+				offset: new AMap.Pixel(15, 35),
+				content: "华山一号服务终中转站"
+			});
+			marker1.on('click', function(e) {
+				$("#myContainer").empty();
+				$('.popup5').css({
+					'visibility': 'visible',
+				});
+
+				var images2 = [
+					"./images/hsz1.jpg",
+					"./images/hsz2.jpg",
+					"./images/hsz3.jpg",
+					"./images/hsz4.jpg",
+				];
+				images2.forEach(function(src) {
+					// 创建新的<img>元素并设置其src属性
+					var img = $('<img>').attr('src', src)
+						.attr('width', '48%').attr('height', '48%').attr('margin', '1%');
+					// 将新的<img>元素添加到#myContainer中
+					$("#myContainer").append(img);
+				});
+
+			});
+
+			var marker2 = new AMap.Marker({
+				position: new AMap.LngLat(117.066245, 36.738234), // 定位位置的经纬度
+			});
+			marker2.setMap(map);
+			//设置鼠标划过点标记显示的文字提示
+			marker2.setTitle("历城华山宣教中心");
+			marker2.setLabel({
+				offset: new AMap.Pixel(15, 35),
+				content: "历城华山宣教中心"
+			});
+			marker2.on('click', function(e) {
+				$('.popup5').css({
+					'visibility': 'visible',
+				});
+				$("#myContainer").empty();
+				var images3 = [
+					"./images/xjzx1.jpg",
+					"./images/xjzx2.jpg",
+				];
+				images3.forEach(function(src) {
+					// 创建新的<img>元素并设置其src属性
+					var img = $('<img>').attr('src', src)
+						.attr('width', '48%').attr('height', '48%').attr('margin', '1%');
+					// 将新的<img>元素添加到#myContainer中
+					$("#myContainer").append(img);
+				});
+			});
+
+			var marker3 = new AMap.Marker({
+				position: new AMap.LngLat(117.073203, 36.74383), // 定位位置的经纬度
+			});
+			marker3.setMap(map);
+			//设置鼠标划过点标记显示的文字提示
+			marker3.setTitle("历城华山‘两网融合’体验中心");
+			marker3.setLabel({
+				offset: new AMap.Pixel(15, 35),
+				content: "历城华山‘两网融合’体验中心"
+			});
+			marker3.on('click', function(e) {
+				$("#myContainer").empty();
+				$('.popup5').css({
+					'visibility': 'visible',
+				});
+
+				// ‘两网融合’体验中心
+				var images4 = [
+					"./images/baibaibai.png",
+					"./images/baibaibai.png",
+				];
+				images4.forEach(function(src) {
+					// 创建新的<img>元素并设置其src属性
+					var img = $('<img>').attr('src', src)
+						.attr('width', '48%').attr('height', '48%').attr('margin', '1%');
+					// 将新的<img>元素添加到#myContainer中
+					$("#myContainer").append(img);
+				});
+
+			});
+
+
+
+
+
+
+
+			// 117.099636,36.758696     芮宁（山东）再生资源科技有限公司
+			// 117.099217,36.725781    华山一号服务终中转站
+			// 117.066245,36.738234    宣教中心
+			//117.073203,36.74383     ‘两网融合’体验中心  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// 新增多个图片节点
+			// 芮宁
+			//    var images1 = [
+			//        "./images/ruinig.jpg",
+			//    ];
+			// // 华山一号服务终中转站
+			// var images2 = [
+			// 	"./images/hsz1.jpg",
+			// 	"./images/hsz2.jpg",
+			// 	"./images/hsz3.jpg",
+			// 	"./images/hsz4.jpg",
+			// ];
+
+
+			// // ‘两网融合’体验中心
+			// var images3 = [
+			// 	"./images/baibaibai.png",
+			// 	"./images/baibaibai.png",
+			// ];
+			// // 宣教中心  xjzx2.jpg
+			// var images4 = [
+			// 	"./images/xjzx1.png",
+			// 	"./images/xjzx2.png",
+			// ];
+
+			// var images1 = [
+			//     "./images/ruinig.jpg",
+			// ];
+			//    images.forEach(function(src) {
+			//        // 创建新的<img>元素并设置其src属性
+			//        var img = $('<img>').attr('src', src).attr('alt', 'New Image');
+			//        // 将新的<img>元素添加到#myContainer中
+			//        $("#myContainer").append(img);
+			//    });
+
+
+		})
+
+
+		// // 当前两点击事件
+		// function dqlClick(){
+		// 	console.log("当前两")
+		// }
+
+		// document.getElementById('myDiv').addEventListener('click', function() {
+		//     alert('Div被点击了！');
+		// });
+	</script>
+
+
+	<script type="text/javascript">
+		// 六方格特效
+		// xuankubei();
+		// 左下角柱状图
+		renderLayer04Left();
+		// 加载
+		getCgKucunss();
+		getqingyunliang();
+		getShishouhuoDate();
+		// 饼状图
+		// newBinguangtu();
+		// 获取走势图
+		getozushitu();
+		sanshiri();
+		setInterval(res => {
+			shuzidonghua()
+		}, 40 * 2 * 1000)
+		setInterval(res => {
+			gaibianshuzi()
+			pingjunfebs();
+		}, 50 * 2 * 1000)
+
+
+
+
+
+		function losealert() {
+			$('.popup1').css({
+				'visibility': 'hidden',
+			});
+			$('.popup2').css({
+				'visibility': 'hidden',
+			});
+			$('.popup1').css({
+				'visibility': 'hidden',
+			});
+			$('.popup2').css({
+				'visibility': 'hidden',
+			});
+			$('.popup4').css({
+				'visibility': 'hidden',
+			});
+			$("#ttList1").css("display", "none");
+			$("#ttList2").css("display", "none");
+			$("#ttList3").css("display", "none");
+			$("#ttList4").css("display", "none");
+			$("#ttList5").css("display", "none");
+			$("#ttList6").css("display", "none");
+		}
+
+		$('#myDiv').on('click', function() {
+			losealert();
+			var str = $('#myDiv_').text();
+			if (str.indexOf("▲") >= 0) {
+				$('.popup1').css({
+					'visibility': 'hidden',
+				});
+				$('#myDiv_').text(' ▼ ');
+			} else {
+				$('.popup1').css({
+					'visibility': 'visible',
+				});
+				$('#myDiv_').text(' ▲ ');
+			}
+
+
+
+		});
+		$('#myDiv2').on('click', function() {
+			losealert();
+			// $('.popup2').css({
+			// 	'visibility': 'visible',
+			// });
+			// $('#myDiv2').text('关闭 ▲ ');
+
+
+
+			var str = $('#myDiv2_').text();
+			if (str.indexOf("▲") >= 0) {
+				$('.popup2').css({
+					'visibility': 'hidden',
+				});
+				$('#myDiv2_').text(' ▼ ');
+			} else {
+				$('.popup2').css({
+					'visibility': 'visible',
+				});
+				$('#myDiv2_').text(' ▲ ');
+			}
+
+		});
+
+
+
+
+
+
+
+
+		$('.alert1').click(function() {
+			$('.popup1').css({
+				'visibility': 'hidden',
+			});
+		});
+		$('.alert2').click(function() {
+			$('.popup2').css({
+				'visibility': 'hidden',
+			});
+		});
+		$('.alert4').click(function() {
+			$('.popup4').css({
+				'visibility': 'hidden',
+			});
+		});
+		$('.alert5').click(function() {
+			$('.popup5').css({
+				'visibility': 'hidden',
+			});
+		});
+
+
+		// 平均分配数字
+		function pingjunfebs() {
+			var num1 = Number($("#num1").attr("data-target"));
+			var num2 = Number($("#num2").attr("data-target"));
+			console.log("Number", num1, num2);
+			var num11 = divideIntoSixUniqueParts(num1, 6);
+			for (var a = 0; a < num11.length; a++) {
+				num11[a] = parseInt(num11[a])
+			}
+			var num22 = divideIntoSixUniqueParts(num2, 19);
+			for (var a = 0; a < num22.length; a++) {
+				num22[a] = parseInt(num22[a])
+			}
+			console.log(num11, num22);
+		}
+		// 随机数
+		function divideIntoSixUniqueParts(total, fenshu) {
+			if (total < 21) { // 最小值检查，因为最小的六个不同整数和是1+2+3+4+5+6=21
+				throw new Error("总数必须大于等于21才能分成六个严格不等的整数份");
+			}
+
+			// 基准值，取total除以6的商（向下取整），然后加一（为了后续分配增量）
+			let base = Math.floor(total / fenshu);
+			if (base * fenshu === total) { // 如果total能被6整除，则基准值需要再大一些以确保至少有一个部分不同
+				base++;
+				if (base * fenshu > total) { // 防止超出total
+					base--;
+					// 如果此时仍然满足能被6整除（即total-1是6的倍数），则无法直接找到解，需要特殊处理
+					// 但为了简化，我们这里假设total至少比能被6整除的数大1
+					// 实际上，你可能需要更复杂的逻辑来处理这种情况
+				}
+			}
+
+			// 剩余的数用于分配增量
+			let remaining = total - base * fenshu;
+
+			// 分配增量的数组（初始化为0）
+			let increments = [];
+			if (fenshu == 6) {
+				increments = [0, 0, 0, 0, 0, 0];
+			} else {
+				increments = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+			}
+
+
+			// 分配增量的策略：这里简单地按顺序给前面的部分分配更多的增量
+			// 注意：我们需要确保增量后的和仍然等于total
+			let allocated = 0; // 已分配的增量总和
+			for (let i = 0; i < remaining; i++) {
+				// 将剩余的增量依次分配给前面的部分（这里简单地按顺序分配）
+				// 注意：这种分配方式可能不是最优的，但它确保了每个部分都是唯一的
+				if (i < fenshu) {
+					increments[i]++;
+					allocated++;
+					// 如果已经分配了所有剩余的增量，则跳出循环
+					if (allocated === remaining) {
+						break;
+					}
+				}
+				// 如果需要，可以添加更复杂的逻辑来优化增量的分配
+			}
+
+			// 计算最终结果
+			let parts = increments.map((inc, index) => base + inc);
+
+			// 验证结果
+			if (parts.reduce((sum, part) => sum + part, 0) !== total) {
+				throw new Error("分配失败，结果和不等于总数");
+			}
+
+			// 确保没有重复的部分（理论上由于我们的分配策略，这一步应该是多余的，但为了安全起见还是加上）
+			// if (new Set(parts).size !== fenshu) {
+			//     throw new Error("分配结果中存在重复的部分");
+			// }
+
+			return parts;
+		}
+
+		// 该顶部数字
+		function gaibianshuzi() {
+			var num1 = $("#num1").attr("data-target");
+
+			$("#num1").attr("data-target", Number(num1) + getRandomInt(20, 200));
+			var num2 = $("#num2").attr("data-target");
+
+			$("#num2").attr("data-target", Number(num2) + getRandomInt(20, 200));
+			console.log(num1, num2)
+		}
+
+		function getRandomArbitrary(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		function getRandomInt(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(getRandomArbitrary(min, max));
+		}
+
+		// 数字动画
+		function shuzidonghua() {
+			console.log("aa", )
+			// 获取所有的dom,querySelectorAll为为数组
+			const numbers = document.querySelectorAll('.number123')
+			console.log("🚀 ~ file: css数字从0到指定数值.html:23 ~ numbers:", numbers)
+			numbers.forEach(counter => {
+				counter.innerText = 0;
+				const upDateNumber = () => {
+					// 获取每个类名为number的data-target,即获取最大值 
+					const target = Number(counter.getAttribute('data-target'))
+					// 获取当前div的数值
+					const d = Number(counter.innerText)
+					// 设置数据增加的值，可以通过target除的数值确定怎么加数值的快慢
+					const increment = target / 200
+					// 当数字小于最大值时，执行下面的操作
+					if (d < target) {
+						// 向上取整
+						counter.innerText = `${Math.ceil(d + increment)}`
+						// 1ms重新调用，不然它会在第一次运行完就结束
+						setTimeout(upDateNumber, 1)
+					} else {
+						counter.innerText = target
+					}
+				}
+				upDateNumber()
+			})
+
+		}
+
+		// 获取当前月的年月日
+		function getCurrentMonthDays() {
+			const now = new Date();
+			const year = now.getFullYear();
+			const month = now.getMonth() + 1; // 月份从0开始，所以要+1
+
+			// 创建一个新的Date对象，设置为当前月份的第一天
+			let firstDayOfMonth = new Date(year, month - 1, 1);
+
+			// 创建一个新的Date对象，设置为当前月份的下一个月的第一天
+			// 然后减去一天，得到当前月份的最后一天
+			let nextMonthFirstDay = new Date(year, month, 1);
+			let lastDayOfMonth = new Date(nextMonthFirstDay - 1);
+
+			// 初始化一个空数组来存储每一天的日期
+			let days = [];
+
+			// 循环从第一天到最后一天
+			for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
+				// 设置Date对象为当前循环的日期
+				let currentDay = new Date(year, month - 1, day);
+
+				// 格式化日期为YYYY-MM-DD
+				let formattedDate =
+					`${currentDay.getFullYear()}-${String(currentDay.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+				// 将格式化后的日期添加到数组中
+				days.push(formattedDate);
+			}
+
+			// 返回包含每一天日期的数组
+			return days;
+		}
+		// 获取指定个数的随机数
+		function getRandomNumbers(count) {
+			let randomNumbers = [];
+
+			for (let i = 0; i < count; i++) {
+				// 生成0到1000之间的随机数
+				let randomNumber = Math.floor(Math.random() * 1001);
+
+				// 将随机数添加到数组中
+				randomNumbers.push(randomNumber);
+			}
+
+			// 返回包含随机数的数组
+			return randomNumbers;
+		}
+
+
+		// 渲染走势图
+		function xuanranzoushitu(legenddata, xAxisdata, series) {
+			var days = getCurrentMonthDays();
+			var xAxisdata = [];
+			xAxisdata.push(days[0]);
+			xAxisdata.push(days[1]);
+			xAxisdata.push(days[2]);
+			xAxisdata.push(days[3]);
+			xAxisdata.push(days[4]);
+
+			for (var a = 0; a < series.length; a++) {
+				series[a].data = getRandomNumbers(5);
+			}
+
+
+
+			var myChart = echarts.init(document.getElementById('prbottom_box1'));
+			var option = {
+
+				legend: {
+					data: legenddata,
+
+					textStyle: {
+						color: '#ffffff' // 这里设置图例的字体颜色为红色
+					}
+				},
+				color: ['#d2d17c', '#7fd7b1', '#5578cf', '#5ebbeb', '#d16ad8', '#f8e19a', '#00b7ee',
+					'#81dabe',
+					'#5fc5ce'
+				],
+				// tooltip : {
+				//     trigger: 'axis'
+				// },
+				xAxis: [{
+					type: 'category',
+					boundaryGap: false,
+					data: xAxisdata,
+					splitLine: {
+						show: false
+					},
+					axisLabel: {
+						show: true,
+						textStyle: {
+							color: '#a4a7ab'
+						}
+					}
+				}],
+				yAxis: [{
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLabel: {
+						show: true,
+						textStyle: {
+							color: '#a4a7ab'
+						}
+					}
+
+				}],
+				series: series
+			};
+			myChart.setOption(option);
+
+			var count = 5;
+			setInterval(() => {
+
+				if (count > (days.length - 1)) {
+					xAxisdata = [];
+					xAxisdata.push(days[0]);
+					xAxisdata.push(days[1]);
+					xAxisdata.push(days[2]);
+					xAxisdata.push(days[3]);
+					xAxisdata.push(days[4]);
+				} else {
+					xAxisdata.shift();
+					xAxisdata.push(days[count]);
+				}
+				for (var a = 0; a < series.length; a++) {
+					var suiji = Math.round(Math.random() * 1000);
+					series[a].data.shift();
+					series[a].data.push(suiji);
+				}
+
+
+
+
+
+				myChart.setOption({
+					series: series,
+					xAxis: [{
+						type: 'category',
+						boundaryGap: false,
+						data: xAxisdata,
+						splitLine: {
+							show: false
+						},
+						axisLabel: {
+							show: true,
+							textStyle: {
+								color: '#a4a7ab'
+							}
+						}
+					}],
+				});
+				if (count >= (days.length - 1)) {
+					count = 5;
+				} else {
+					count = count + 1;
+				}
+
+			}, 3000)
+
+
+		}
+		// 获取走势图
+		function getozushitu() {
+			const url = 'https://xdshop.zsyflive.com/api/rn/getzoushitu'
+			fetch(url, {
+					method: 'POST', // 指定请求方法
+					headers: {
+						'Content-Type': 'application/json' // 设置请求的Content-Type
+					},
+					body: JSON.stringify({
+						key: 'value'
+					}) // 将数据转换为JSON字符串
+				})
+				.then(response => response.json()) // 解析JSON响应
+				.then(data => {
+					console.log("==", data);
+					var listnames = [];
+					var listnames1 = [];
+					data = data.data;
+
+					listnames = getWeiyi(data);
+					listnames1 = getWeiyi(data);
+					var listdates = getWeiyidate(data);
+
+					listdates.sort((a, b) => {
+						// 将字符串解析为Date对象
+						const dateA = new Date(a);
+						const dateB = new Date(b);
+						return dateA - dateB;
+					});
+					var series = [];
+					var listnames1 = listnames;
+					var colors = ['#d2d17c', '#7fd7b1', '#5578cf', '#5ebbeb', '#d16ad8', '#f8e19a', '#00b7ee',
+						'#81dabe',
+						'#5fc5ce'
+					]
+					for (var a = 0; a < listnames1.length; a++) {
+						var obg = {
+							name: listnames[a],
+							type: 'line',
+							stack: '元',
+							data: [],
+							itemStyle: {
+								normal: {
+									color: colors[a]
+								}
+							}
+						}
+						listnames1[a] = obg;
+					}
+
+
+
+					for (var a = 0; a < data.length; a++) {
+						for (var b = 0; b < listnames1.length; b++) {
+							if (data[a].name == listnames1[b].name) {
+								listnames1[b].data.push(data[a].price);
+							}
+						}
+					}
+
+
+
+					var listnames213 = getWeiyi(data);
+					xuanranzoushitu(listnames213, listdates, listnames1);
+
+				}) // 处理数据
+				.catch(error => console.error('Error:', error)); // 错误处理';
+		}
+
+
+		function getWeiyi(list) {
+			// 使用Set来存储唯一的name值
+			const uniqueNames = new Set();
+
+			// 遍历列表，将每个对象的name添加到Set中
+			list.forEach(item => {
+				uniqueNames.add(item.name);
+			});
+
+			// 将Set转换回数组（如果你需要的话）
+			const uniqueNamesArray = Array.from(uniqueNames);
+
+			return uniqueNamesArray;
+		}
+
+		function getWeiyidate(list) {
+			// 使用Set来存储唯一的name值
+			const uniqueNames = new Set();
+
+			// 遍历列表，将每个对象的name添加到Set中
+			list.forEach(item => {
+				uniqueNames.add(item.date);
+			});
+
+			// 将Set转换回数组（如果你需要的话）
+			const uniqueNamesArray = Array.from(uniqueNames);
+
+			return uniqueNamesArray;
+		}
+
+		// 获取实时收货数据
+		function getShishouhuoDate() {
+			const url = 'https://xdshop.zsyflive.com/api/rn/getshishishouhuo'
+			fetch(url, {
+					method: 'POST', // 指定请求方法
+					headers: {
+						'Content-Type': 'application/json' // 设置请求的Content-Type
+					},
+					body: JSON.stringify({
+						key: 'value'
+					}) // 将数据转换为JSON字符串
+				})
+				.then(response => response.json()) // 解析JSON响应
+				.then(data => {
+
+					var tbody = document.getElementById("mytable2");
+					data = data.data;
+					for (var i = 0; i < data.length; i++) {
+						// 一、创建行
+						var tr = document.createElement('tr');
+
+						var td = document.createElement('td');
+						// 单元格填充内容
+						td.innerHTML = data[i].kehu;
+						// 2.添加单元格
+						tr.appendChild(td);
+
+						var td1 = document.createElement('td');
+						// 单元格填充内容
+						td1.innerHTML = data[i].pinlei;
+						// 2.添加单元格
+						tr.appendChild(td1);
+
+
+
+						var td3 = document.createElement('td');
+						// 单元格填充内容
+						td3.innerHTML = data[i].zhongliang;
+						// 2.添加单元格
+						tr.appendChild(td3);
+
+						var td4 = document.createElement('td');
+						// 单元格填充内容
+						td4.innerHTML = data[i].jine;
+						// 2.添加单元格
+						tr.appendChild(td4);
+
+
+						// tr.appendChild(td);
+						// 四、添加行
+						tbody.appendChild(tr);
+					}
+
+
+				}) // 处理数据
+				.catch(error => console.error('Error:', error)); // 错误处理';
+		}
+		// 获取清运量统计
+		function getqingyunliang() {
+			const url = 'https://xdshop.zsyflive.com/api/rn/getqingyunliang'
+			fetch(url, {
+					method: 'POST', // 指定请求方法
+					headers: {
+						'Content-Type': 'application/json' // 设置请求的Content-Type
+					},
+					body: JSON.stringify({
+						key: 'value'
+					}) // 将数据转换为JSON字符串
+				})
+				.then(response => response.json()) // 解析JSON响应
+				.then(data => {
+					console.log("-清运量-", data);
+
+					var tbody = document.getElementById("mytable1");
+					data = data.data;
+					for (var i = 0; i < data.length; i++) {
+						// 一、创建行
+						var tr = document.createElement('tr');
+
+						var td = document.createElement('td');
+						// 单元格填充内容
+						td.innerHTML = data[i].kehu;
+						// 2.添加单元格
+						tr.appendChild(td);
+
+						var td1 = document.createElement('td');
+						// 单元格填充内容
+						td1.innerHTML = data[i].pinlei;
+						// 2.添加单元格
+						tr.appendChild(td1);
+
+						var td2 = document.createElement('td');
+						// 单元格填充内容
+						td2.innerHTML = data[i].cishu;
+						// 2.添加单元格
+						tr.appendChild(td2);
+
+						var td3 = document.createElement('td');
+						// 单元格填充内容
+						td3.innerHTML = data[i].zhongliang;
+						// 2.添加单元格
+						tr.appendChild(td3);
+
+						var td4 = document.createElement('td');
+						// 单元格填充内容
+						td4.innerHTML = data[i].jine;
+						// 2.添加单元格
+						tr.appendChild(td4);
+
+
+
+						// 四、添加行
+						tbody.appendChild(tr);
+					}
+
+
+				}) // 处理数据
+				.catch(error => console.error('Error:', error)); // 错误处理';
+		}
+
+
+
+
+		// 获取库存汇总
+		function getCgKucunss() {
+			const url = 'https://xdshop.zsyflive.com/api/rn/getCgKucunss';
+			fetch(url, {
+					method: 'POST', // 指定请求方法
+					headers: {
+						'Content-Type': 'application/json' // 设置请求的Content-Type
+					},
+					body: JSON.stringify({
+						key: 'value'
+					}) // 将数据转换为JSON字符串
+				})
+				.then(response => response.json()) // 解析JSON响应
+				.then(data => {
+					console.log(data)
+
+					var list = [];
+					var txt = []
+					for (var a = 0; a < data.data.length; a++) {
+						var obg = {
+							name: data.data[a].name,
+							value: data.data[a].count,
+						}
+						txt.push(data.data[a].name);
+						list.push(data.data[a].count);
+					}
+
+					loadkucun(list, txt);
+				}) // 处理数据
+				.catch(error => console.error('Error:', error)); // 错误处理
+
+		}
+
+
+
+
+
+
+
+
+
+		function loadkucun(list, txt) {
+
+
+
+
+			var myChart1 = echarts.init(document.getElementById('buyTime'));
+			var option1 = {
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: { // 坐标轴指示器，坐标轴触发有效
+						type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid: {
+					x: 46,
+					y: 30,
+					x2: 32,
+					y2: 40,
+					borderWidth: 0
+				},
+				calculable: true,
+				xAxis: [{
+					type: 'category',
+					data: txt,
+
+					splitLine: {
+						show: false
+					},
+					axisLabel: {
+						show: true,
+						textStyle: {
+							color: '#a4a7ab',
+							align: 'center'
+						}
+					}
+				}],
+				yAxis: [{
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLabel: {
+						show: true,
+						textStyle: {
+							color: '#a4a7ab'
+						}
+					}
+				}],
+				series: [{
+					name: '',
+					type: 'bar',
+					barWidth: '30',
+					data: list,
+					itemStyle: {
+						//通常情况下：
+						normal: {
+							barBorderRadius: 8,
+							//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+							color: function(params) {
+								var colorList = [
+									['rgb(14,102,179)', 'rgb(51,36,169)'],
+									['#F5cF0D', '#fa9203'],
+									['#61dbe8', '#0785de'],
+									['#ff9717', '#ff4518'],
+								];
+								var index = params.dataIndex;
+								if (params.dataIndex >= colorList.length) {
+									index = params.dataIndex - colorList.length;
+								}
+								return new echarts.graphic.LinearGradient(0, 0, 0, 1,
+									[{
+											offset: 0,
+											color: colorList[index][0]
+										},
+										{
+											offset: 1,
+											color: colorList[index][1]
+										}
+									]);
+							}
+						},
+					},
+
+				}]
+			};
+			myChart1.setOption(option1);
+
+			myChart1.on('click', function(params) {
+
+				losealert();
+				$('.popup4').css({
+					'visibility': 'visible',
+				});
+				var name = params.name;
+				console.log("===", name)
+				if (name == '废纺') {
+					$("#ttList6").show();
+				} else if (name == '家具') {
+					$("#ttList5").show();
+				} else if (name == '家电') {
+					$("#ttList4").show();
+				} else if (name == '玻璃') {
+					$("#ttList3").show();
+				} else if (name == '塑料') {
+					$("#ttList2").show();
+				} else if (name == '金属') {
+					$("#ttList1").show();
+				}
+
+			});
+
+		}
+
+		// 获取三十日
+		function sanshiri() {
+			const url = 'https://xdshop.zsyflive.com/api/rn/getsanshi';
+			fetch(url, {
+					method: 'POST', // 指定请求方法
+					headers: {
+						'Content-Type': 'application/json' // 设置请求的Content-Type
+					},
+					body: JSON.stringify({
+						key: 'value'
+					}) // 将数据转换为JSON字符串
+				})
+				.then(response => response.json()) // 解析JSON响应
+				.then(data => {
+					console.log("三十日", data)
+
+					var colors = ['#d2d17c', '#7fd7b1', '#5578cf', '#5ebbeb', '#d16ad8', '#f8e19a', '#00b7ee',
+						'#81dabe',
+						'#5fc5ce'
+					]
+
+					var da = data.data;
+					console.log('a', da);
+					var names = [];
+					var obgs = [];
+					for (var a = 0; a < da.length; a++) {
+						names.push(da[a].typeName);
+						// var obg = {
+						// 	value: da[a].baifenbi,
+						// 	name: da[a].typeName,
+						// 	itemStyle: {
+						// 		normal: {
+						// 			color: colors[a]
+						// 		}
+						// 	}
+						// }
+
+						var obg = {
+							value: da[a].baifenbi,
+							name: da[a].typeName,
+							type: 'line',
+							smooth: true,
+							areaStyle: {
+								normal: {
+									color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+										offset: 0,
+										color: '#026B6F'
+									}, {
+										offset: 1,
+										color: '#012138'
+									}], false),
+									opacity: 0.2
+								}
+							},
+							itemStyle: {
+								normal: {
+									color: colors[a]
+								},
+								lineStyle: {
+									normal: {
+										color: '#009895',
+										opacity: 1
+									}
+								}
+							},
+							symbol: 'none',
+							data: getRandomNumbers11(5)
+						}
+						obgs.push(obg)
+					}
+					console.log("--=", names, obgs)
+					// newBinguangtu(names, obgs);
+					renderLayer04Left(obgs, names);
+				}) // 处理数据
+				.catch(error => console.error('Error:', error)); // 错误处理
+		}
+
+		function getRandomNumbers11(count) {
+			let randomNumbers = [];
+
+			for (let i = 0; i < count; i++) {
+				// 生成0到1000之间的随机数
+				var randomNumber = 0;
+				var min = Math.ceil(50); // 确保最小值是整数
+				var max = Math.floor(100); // 确保最大值是整数
+				randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; // 加上1是因为Math.random()不包括最大值
+
+				// let randomNumber = Math.floor(Math.random() * 50);
+
+				// 将随机数添加到数组中
+				randomNumbers.push(randomNumber);
+			}
+
+			// 返回包含随机数的数组
+			return randomNumbers;
+		}
+
+		function newBinguangtu(names, obgs) {
+			console.log(names, obgs)
+			var myChart3 = echarts.init(document.getElementById('userContainerAge'));
+			var option3 = {
+
+				tooltip: {
+					axisPointer: {
+						type: 'shadow'
+					},
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					orient: 'vertical',
+					x: 'right',
+					y: "16",
+					data: names,
+					textStyle: {
+						color: "#e9ebee"
+					}
+				},
+				series: [{
+					itemStyle: {
+						normal: {
+							label: {
+								show: false
+							},
+							labelLine: {
+								show: false
+							}
+						}
+					},
+					name: '',
+					type: 'pie',
+					radius: '55%',
+					center: ['50%', '60%'],
+					data: obgs
+				}]
+			};
+			myChart3.setOption(option3);
+		}
+
+		// 炫酷2   放烟花
+		function fangyanhua() {
+
+		}
+		// 炫酷1  六方格
+		function xuankubei() {
+			var w = c.width = window.innerWidth,
+				h = c.height = window.innerHeight,
+				ctx = c.getContext('2d'),
+				opts = {
+					len: 20,
+					count: 50,
+					baseTime: 10,
+					addedTime: 10,
+					dieChance: .05,
+					spawnChance: 1,
+					sparkChance: .1,
+					sparkDist: 10,
+					sparkSize: 2,
+					color: 'hsl(hue,100%,light%)',
+					baseLight: 50,
+					addedLight: 10,
+					shadowToTimePropMult: 6,
+					baseLightInputMultiplier: .01,
+					addedLightInputMultiplier: .02,
+					cx: w / 2,
+					cy: h / 2,
+					repaintAlpha: .04,
+					hueChange: .1
+				},
+				tick = 0,
+				lines = [],
+				dieX = w / 2 / opts.len,
+				dieY = h / 2 / opts.len,
+				baseRad = Math.PI * 2 / 6;
+			ctx.fillStyle = 'black';
+			ctx.fillRect(0, 0, w, h);
+
+			function loop() {
+				window.requestAnimationFrame(loop);
+				++tick;
+				ctx.globalCompositeOperation = 'source-over';
+				ctx.shadowBlur = 0;
+				ctx.fillStyle = 'rgba(0,0,0,alp)'.replace('alp', opts.repaintAlpha);
+				ctx.fillRect(0, 0, w, h);
+				ctx.globalCompositeOperation = 'lighter';
+				if (lines.length < opts.count && Math.random() < opts.spawnChance) lines.push(new Line);
+				lines.map(function(line) {
+					line.step()
+				})
+			}
+
+			function Line() {
+				this.reset()
+			}
+			Line.prototype.reset = function() {
+				this.x = 0;
+				this.y = 0;
+				this.addedX = 0;
+				this.addedY = 0;
+				this.rad = 0;
+				this.lightInputMultiplier = opts.baseLightInputMultiplier + opts.addedLightInputMultiplier * Math
+					.random();
+				this.color = opts.color.replace('hue', tick * opts.hueChange);
+				this.cumulativeTime = 0;
+				this.beginPhase()
+			}
+			Line.prototype.beginPhase = function() {
+				this.x += this.addedX;
+				this.y += this.addedY;
+				this.time = 0;
+				this.targetTime = (opts.baseTime + opts.addedTime * Math.random()) | 0;
+				this.rad += baseRad * (Math.random() < .5 ? 1 : -1);
+				this.addedX = Math.cos(this.rad);
+				this.addedY = Math.sin(this.rad);
+				if (Math.random() < opts.dieChance || this.x > dieX || this.x < -dieX || this.y > dieY || this.y < -dieY)
+					this.reset()
+			}
+			Line.prototype.step = function() {
+				++this.time;
+				++this.cumulativeTime;
+				if (this.time >= this.targetTime) this.beginPhase();
+				var prop = this.time / this.targetTime,
+					wave = Math.sin(prop * Math.PI / 2),
+					x = this.addedX * wave,
+					y = this.addedY * wave;
+				ctx.shadowBlur = prop * opts.shadowToTimePropMult;
+				ctx.fillStyle = ctx.shadowColor = this.color.replace('light', opts.baseLight + opts.addedLight * Math.sin(
+					this.cumulativeTime * this.lightInputMultiplier));
+				ctx.fillRect(opts.cx + (this.x + x) * opts.len, opts.cy + (this.y + y) * opts.len, 2, 2);
+				if (Math.random() < opts.sparkChance) ctx.fillRect(opts.cx + (this.x + x) * opts.len + Math.random() *
+					opts.sparkDist * (Math.random() < .5 ? 1 : -1) - opts.sparkSize / 2, opts.cy + (this.y + y) * opts
+					.len + Math.random() * opts.sparkDist * (Math.random() < .5 ? 1 : -1) - opts.sparkSize / 2, opts
+					.sparkSize, opts.sparkSize)
+			}
+			loop();
+			window.addEventListener('resize',
+				function() {
+					w = c.width = window.innerWidth;
+					h = c.height = window.innerHeight;
+					ctx.fillStyle = 'black';
+					ctx.fillRect(0, 0, w, h);
+					opts.cx = w / 2;
+					opts.cy = h / 2;
+					dieX = w / 2 / opts.len;
+					dieY = h / 2 / opts.len
+				});
+		}
+	</script>
+	<!-- 特效4 -->
+	<!-- <script>
+		console.log("特效4444")
+	var canvas,
+		ctx,
+		width,
+		height,
+		size,
+		lines,
+		tick;
+	
+	function line() {
+		this.path = [];
+		this.speed = rand(10, 20);
+		this.count = randInt(10, 30);
+		this.x = width / 2, +1;
+		this.y = height / 2 + 1;
+		this.target = {
+			x: width / 2,
+			y: height / 2
+		};
+		this.dist = 0;
+		this.angle = 0;
+		this.hue = tick / 5;
+		this.life = 1;
+		this.updateAngle();
+		this.updateDist();
+	}
+	
+	line.prototype.step = function(i) {
+		this.x += Math.cos(this.angle) * this.speed;
+		this.y += Math.sin(this.angle) * this.speed;
+	
+		this.updateDist();
+	
+		if (this.dist < this.speed) {
+			this.x = this.target.x;
+			this.y = this.target.y;
+			this.changeTarget();
+		}
+	
+		this.path.push({
+			x: this.x,
+			y: this.y
+		});
+		if (this.path.length > this.count) {
+			this.path.shift();
+		}
+	
+		this.life -= 0.001;
+	
+		if (this.life <= 0) {
+			this.path = null;
+			lines.splice(i, 1);
+		}
+	};
+	
+	line.prototype.updateDist = function() {
+		var dx = this.target.x - this.x,
+			dy = this.target.y - this.y;
+		this.dist = Math.sqrt(dx * dx + dy * dy);
+	}
+	
+	line.prototype.updateAngle = function() {
+		var dx = this.target.x - this.x,
+			dy = this.target.y - this.y;
+		this.angle = Math.atan2(dy, dx);
+	}
+	
+	line.prototype.changeTarget = function() {
+		var randStart = randInt(0, 3);
+		switch (randStart) {
+			case 0: // up
+				this.target.y = this.y - size;
+				break;
+			case 1: // right
+				this.target.x = this.x + size;
+				break;
+			case 2: // down
+				this.target.y = this.y + size;
+				break;
+			case 3: // left
+				this.target.x = this.x - size;
+		}
+		this.updateAngle();
+	};
+	
+	line.prototype.draw = function(i) {
+		ctx.beginPath();
+		var rando = rand(0, 10);
+		for (var j = 0, length = this.path.length; j < length; j++) {
+			ctx[(j === 0) ? 'moveTo' : 'lineTo'](this.path[j].x + rand(-rando, rando), this.path[j].y + rand(-rando, rando));
+		}
+		ctx.strokeStyle = 'hsla(' + rand(this.hue, this.hue + 30) + ', 80%, 55%, ' + (this.life / 3) + ')';
+		ctx.lineWidth = rand(0.1, 2);
+		ctx.stroke();
+	};
+	
+	function rand(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+	
+	function randInt(min, max) {
+		return Math.floor(min + Math.random() * (max - min + 1));
+	};
+	
+	function init() {  
+		canvas = document.getElementById('canvas111');
+		ctx = canvas.getContext('2d');
+		size = 30;
+		lines = [];
+		reset();
+		loop();
+	}
+	
+	function reset() {
+		width = Math.ceil(window.innerWidth / 2) * 2;
+		height = Math.ceil(window.innerHeight / 2) * 2;
+		tick = 0;
+	
+		lines.length = 0;
+		canvas.width = width;
+		canvas.height = height;
+	}
+	
+	function create() {
+		if (tick % 10 === 0) {
+			lines.push(new line());
+		}
+	}
+	
+	function step() {
+		var i = lines.length;
+		while (i--) {
+			lines[i].step(i);
+		}
+	}
+	
+	function clear() {
+		ctx.globalCompositeOperation = 'destination-out';
+		ctx.fillStyle = 'hsla(0, 0%, 0%, 0.1';
+		ctx.fillRect(0, 0, width, height);
+		ctx.globalCompositeOperation = 'lighter';
+	}
+	
+	function draw() {
+		ctx.save();
+		ctx.translate(width / 2, height / 2);
+		ctx.rotate(tick * 0.001);
+		var scale = 0.8 + Math.cos(tick * 0.02) * 0.2;
+		ctx.scale(scale, scale);
+		ctx.translate(-width / 2, -height / 2);
+		var i = lines.length;
+		while (i--) {
+			lines[i].draw(i);
+		}
+		ctx.restore();
+	}
+	
+	function loop() {
+		requestAnimationFrame(loop);
+		create();
+		step();
+		clear();
+		draw();
+		tick++;
+	}
+	
+	function onresize() {
+		reset();
+	}
+	
+	window.addEventListener('resize', onresize);
+	
+	init();
+	
+	</script>
+	
+	<style>
+	* {
+		margin:0;
+		padding:0;
+	}
+	
+	body {
+		font-size:16px;
+		font:400 16px/1.62 Georgia,"Xin Gothic","Hiragino Sans GB","Droid Sans Fallback","Microsoft YaHei",sans-serif;font-family: 'PT serif',微軟正黑體,微软雅黑,华文细黑,Microsoft Yahei,Hiragino Sans GB,sans-serif;
+		color:#D0CCCC;
+		overflow:hidden;
+		text-shadow: 0px 0px 1px rgba(24, 22, 22, 0.35);
+		background-color: #000;
+	}
+	div,img,span{
+		z-index:1000;
+	}
+	</style> -->
+	<!-- 特效4结束 -->
+
+
+	<!-- 特效5开始 -->
+	<script src="./js/jquerytx.js"></script>
+	<script src="./js/three.js"></script>
+	<script type="text/javascript">
+		var SEPARATION = 100,
+			AMOUNTX = 50,
+			AMOUNTY = 50;
+
+		var container;
+		var camera,
+			scene,
+			renderer;
+
+		var particles,
+			particle,
+			count = 0;
+
+		var mouseX = 0,
+			mouseY = 0;
+
+		var windowHalfX = window.innerWidth / 20;
+		var windowHalfY = window.innerHeight / 20;
+
+
+		function init(dom) {
+			container = dom
+			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+			camera.position.z = 1000;
+			scene = new THREE.Scene();
+			particles = new Array();
+			var PI2 = Math.PI * 2;
+			var material = new THREE.ParticleCanvasMaterial({
+				color: '#3c78d8',
+				program: function(context) {
+					context.beginPath();
+					context.arc(0, 0, 1, 0, PI2, true);
+					context.fill();
+				}
+			});
+			var i = 0;
+			for (var ix = 0; ix < AMOUNTX; ix++) {
+				for (var iy = 0; iy < AMOUNTY; iy++) {
+					particle = particles[i++] = new THREE.Particle(material);
+					particle.position.x = ix * SEPARATION - ((AMOUNTX * SEPARATION) / 2);
+					particle.position.z = iy * SEPARATION - ((AMOUNTY * SEPARATION) / 2);
+					scene.add(particle);
+				}
+			}
+			renderer = new THREE.CanvasRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			container.appendChild(renderer.domElement);
+			document.addEventListener('mousemove', onDocumentMouseMove, false);
+			document.addEventListener('touchstart', onDocumentTouchStart, false);
+			document.addEventListener('touchmove', onDocumentTouchMove, false);
+			window.addEventListener('resize', onWindowResize, false);
+		}
+
+		function onWindowResize() {
+			windowHalfX = window.innerWidth / 2;
+			windowHalfY = window.innerHeight / 2;
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+		}
+
+		function onDocumentMouseMove(event) {
+			mouseX = event.clientX - windowHalfX;
+			mouseY = event.clientY - windowHalfY;
+		}
+
+		function onDocumentTouchStart(event) {
+			if (event.touches.length === 1) {
+				event.preventDefault();
+				mouseX = event.touches[0].pageX - windowHalfX;
+				mouseY = event.touches[0].pageY - windowHalfY;
+			}
+		}
+
+		function onDocumentTouchMove(event) {
+			if (event.touches.length === 1) {
+				event.preventDefault();
+				mouseX = event.touches[0].pageX - windowHalfX;
+				mouseY = event.touches[0].pageY - windowHalfY;
+			}
+		}
+
+		function animate() {
+			requestAnimationFrame(animate);
+			render();
+		}
+
+		function render() {
+			camera.position.x += (mouseX - camera.position.x) * .05;
+			camera.position.y += (-mouseY - camera.position.y) * .05;
+			camera.lookAt(scene.position);
+			var i = 0;
+			for (var ix = 0; ix < AMOUNTX; ix++) {
+				for (var iy = 0; iy < AMOUNTY; iy++) {
+					particle = particles[i++];
+					particle.position.y = (Math.sin((ix + count) * 0.3) * 50) + (Math.sin((iy + count) * 0.5) * 50);
+					particle.scale.x = particle.scale.y = (Math.sin((ix + count) * 0.3) + 1) * 2 + (Math.sin((iy + count) *
+						0.5) + 1) * 2;
+				}
+			}
+			renderer.render(scene, camera);
+			count += 0.1;
+		}
+		let renderAnimation = (container) => {
+			init(container);
+			animate();
+		}
+		let domContainer = document.getElementById('m-points')
+		let a = renderAnimation(domContainer)
+	</script>
+	<!-- 特效5结束 -->
+
+
+
+
+</html>
